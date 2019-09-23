@@ -10,6 +10,7 @@ import { Car } from '../models/car';
 export class CarsListComponent implements OnInit {
 
 totalCost: number;
+grossCost: number;
 
 cars: Car[] = [
   {
@@ -62,6 +63,10 @@ cars: Car[] = [
   countTotalCost(): void{
     this.totalCost = this.cars.map(car => car.cost)
                     .reduce((prerv, next) => prerv + next);
+  }
+
+  onShownGross(grossCost: number): void {
+    this.grossCost = grossCost;
   }
 
 }
