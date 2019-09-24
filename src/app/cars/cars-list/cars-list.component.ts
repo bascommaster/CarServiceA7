@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 import { Car } from '../models/car';
 import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,9 +19,12 @@ totalCostRef: TotalCostComponent;
 totalCost: number;
 grossCost: number;
 
+
 cars: Car[];
 
-  constructor(private carsSrvice: CarsService) { }
+  constructor(private carsSrvice: CarsService) {
+    this.grossCost = 0; // becouse of *ngIf in car-list-component.html
+   }
 
   ngOnInit() {
     this.getCars();
@@ -33,7 +35,6 @@ getCars(): void {
   this.carsSrvice.getAllCars().subscribe(cars => {
     this.cars = cars;
     this.countTotalCost();
-
   });
 }
 
@@ -41,6 +42,7 @@ getCars(): void {
 
   ngAfterViewInit() {
     this.totalCostRef.showGross();
+    this.grossCost = 0; // becouse of *ngIf in car-list-component.html
   }
 
   showGross(): void {
