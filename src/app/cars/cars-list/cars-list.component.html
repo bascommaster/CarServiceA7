@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <table *ngIf="cars.length > 0 else noCarsInfo" class="cs-table table table-striped">
+      <table *ngIf="cars && cars.length > 0 else noCarsInfo" class="cs-table table table-striped">
           <thead>
             <tr>
               <th>car</th>
@@ -17,9 +17,9 @@
             <tr *ngFor="let car of cars">
               <td [ngClass]="{'row-error': car.isFullyDamaged}">{{car.model}}</td>
               <td>{{car.plate}}</td>
-              <td>{{car.deliveryDate}}</td>
               <td>{{car.deadline}}</td>
-              <td>{{car.client.firstName}} {{car.client.surName}}</td>
+              <td>{{car.deliveryDate}}</td>
+              <td>{{car.clientFirstName}} {{car.clientSurname}}</td>
               <td>{{car.cost}}</td>
               <td>ACTION PLACEHOLDER</td>
             </tr>
