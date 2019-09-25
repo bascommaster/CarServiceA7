@@ -1,3 +1,9 @@
-<p>
-  header works!
-</p>
+<div class="header">
+  <div class="levels">
+    <ng-content select="[levels]"></ng-content>   <!-- comes from Angular -->
+  </div>
+
+  <div class="other-content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>
