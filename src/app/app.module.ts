@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { CoreModule } from './core-module/core-module.module';
 import { RouterModule } from '@angular/router';
 import { CarsListComponent } from './cars/cars-list/cars-list.component';
+import { CarsRoutingModule } from './cars/cars-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,7 @@ import { CarsListComponent } from './cars/cars-list/cars-list.component';
     HttpModule,
     CarsModule,
     CoreModule,
-    RouterModule.forRoot([
-      {path: 'cars', component: CarsListComponent}
-    ])
+    CarsRoutingModule
   ],
   providers: [CarsService],
   bootstrap: [AppComponent]
