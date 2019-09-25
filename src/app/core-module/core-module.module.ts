@@ -8,4 +8,4 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CommonModule
   ]
 })
-export class CoreModuleModule { }
+export class CoreModule { }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CarsModule } from './cars/cars.module';
 import { CarsService } from './cars/cars.service';
 import { HttpModule } from '@angular/http';
+import { CoreModule } from './core-module/core-module.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     // tslint:disable-next-line: deprecation
     HttpModule,
-    CarsModule
+    CarsModule,
+    CoreModule
   ],
   providers: [CarsService],
   bootstrap: [AppComponent]
