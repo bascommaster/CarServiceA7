@@ -23,7 +23,7 @@ import { CarsRoutingModule } from './cars/cars-routing.module';
     CarsModule,
     CoreModule,
     CarsRoutingModule
-  ],
+    ],
   providers: [CarsService],
   bootstrap: [AppComponent]
 })
