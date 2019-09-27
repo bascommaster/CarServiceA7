@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 import { Car } from '../models/car';
 import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ grossCost: number;
 
 cars: Car[];
 
-  constructor(private carsSrvice: CarsService) {
+  constructor(private carsSrvice: CarsService, private router: Router) {
     this.grossCost = 0; // becouse of *ngIf in car-list-component.html
    }
 
@@ -36,6 +37,10 @@ getCars(): void {
     this.cars = cars;
     this.countTotalCost();
   });
+}
+
+goToCarDetails(car: Car) {
+  this.router.navigate(['/cars', car.id]);
 }
 
 
