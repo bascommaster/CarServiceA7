@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarResolve } from './car-resolve.service';
 
 
 const carRoutes: Routes = [
   {
     path: 'cars/:id',
-    component: CarDetailsComponent
+    component: CarDetailsComponent,
+    resolve: {car: CarResolve}
   }
 ];
 

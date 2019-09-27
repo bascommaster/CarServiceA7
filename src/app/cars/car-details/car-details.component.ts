@@ -19,12 +19,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   getCar() {
-    const id = +this.route.snapshot.params['id']; // znak + przetworzy id na liczbę
-
-    this.carsService.getCar(id).subscribe(car => {
-      this.car = car;
-      console.log(this.car);
-    });
+    this.car = this.route.snapshot.data['car'];
   }
 
 }

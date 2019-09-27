@@ -6,6 +6,7 @@ import { SharedModule } from '../shared-module/shared-module.module';
 import { HeaderComponent } from '../shared-module/header/header.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { RouterModule } from '@angular/router';
+import { CarResolve } from './car-resolve.service';
 
 @NgModule({
   declarations: [CarsListComponent, TotalCostComponent, CarDetailsComponent],
@@ -16,6 +17,10 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     CarsListComponent
+  ],
+  providers: [
+    CarResolve
   ]
+
 })
 export class CarsModule { }
