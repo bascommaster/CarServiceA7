@@ -12,7 +12,10 @@ export class CarDetailsComponent implements OnInit {
 
   car: Car;
 
-  constructor(private carsService: CarsService, private route: ActivatedRoute) { }
+  constructor(
+      private carsService: CarsService,
+      private route: ActivatedRoute,
+      ) { }
 
   ngOnInit() {
     this.getCar();

@@ -7,13 +7,15 @@ import { HeaderComponent } from '../shared-module/header/header.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { RouterModule } from '@angular/router';
 import { CarResolve } from './car-resolve.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CarsListComponent, TotalCostComponent, CarDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     CarsListComponent
