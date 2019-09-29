@@ -21,7 +21,14 @@ export class CarsService {
   getAllCars(): Observable<Car[]> {
     return this.http.get(this.baseUrl).pipe(map(res => res.json()));
   }
+
   getCar(id: number): Observable<Car> {
     return this.http.get(this.baseUrl + '/' + id).pipe(map(res => res.json()));
   }
+
+addCar(data: any): Observable<Car> {
+  return this.http.post(this.baseUrl, data)
+            .pipe(map(res => res.json()));
+}
+
 }

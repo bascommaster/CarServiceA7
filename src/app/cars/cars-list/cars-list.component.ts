@@ -50,7 +50,8 @@ cars: Car[];
       clientFirstName: '',
       clientSurname: '',
       cost: '',
-      isFullyDamaged: ''
+      isFullyDamaged: '',
+      year: ''
     });
   }
 
@@ -58,6 +59,12 @@ getCars(): void {
   this.carsSrvice.getAllCars().subscribe(cars => {
     this.cars = cars;
     this.countTotalCost();
+  });
+}
+
+addCar() {
+  this.carsSrvice.addCar(this.carForm.value).subscribe(() => {
+    this.getCars();
   });
 }
 
@@ -77,7 +84,7 @@ goToCarDetails(car: Car) {
   }
 
   countTotalCost(): void {
-    this.totalCost = this.cars.map(car => car.cost)
+    this.totalCost = this.cars.map(car => +car.cost)
                     .reduce((prerv, next) => prerv + next);
   }
 
