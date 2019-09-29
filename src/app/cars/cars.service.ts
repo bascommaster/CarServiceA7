@@ -31,4 +31,8 @@ addCar(data: any): Observable<Car> {
             .pipe(map(res => res.json()));
 }
 
+updateCar(id: number, data: any): Observable<Car> {
+  return this.http.put(this.baseUrl + '/' + id, data).pipe(map(res => res.json()));
+}
+
 }
