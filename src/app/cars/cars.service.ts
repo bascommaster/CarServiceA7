@@ -35,4 +35,8 @@ updateCar(id: number, data: any): Observable<Car> {
   return this.http.put(this.baseUrl + '/' + id, data).pipe(map(res => res.json()));
 }
 
+deleteCar(id: number): Observable<Car> {
+  return this.http.delete(this.baseUrl + '/' + id).pipe(map(res => res.json()));
+}
+
 }
