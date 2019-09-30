@@ -23,12 +23,12 @@
           </thead>
           <tbody>
             <tr *ngFor="let car of cars" class="row-car" (click)="goToCarDetails(car)">
-              <td [ngClass]="{'row-error': car.isFullyDamaged}">{{car.model | uppercase}}</td>
-              <td>{{car.plate}}</td>
+              <td appImportant [ngClass]="{'row-error': car.isFullyDamaged}">{{car.model | uppercase}}</td>
+              <td appImportant>{{car.plate}}</td>
               <td>{{car.deadline }}</td>
               <td>{{car.deliveryDate}}</td>
               <td>{{car.clientFirstName}} {{car.clientSurname | surnameShortcut}}</td>
-              <td>{{car.cost | currency:'PLN':true}}</td>
+              <td appImportant>{{car.cost | currency:'PLN':true}}</td>
               <td>ACTION PLACEHOLDER</td>
             </tr>
           </tbody>
