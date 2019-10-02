@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { Car } from '../models/car';
 import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CostSharedService } from '../cost-shared.service';
+import { CarTableRowComponent } from '../car-table-row/car-table-row.component';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
 @ViewChild('totalCostRef')
 totalCostRef: TotalCostComponent;
+
+@ViewChildren(CarTableRowComponent) carRows: QueryList<CarTableRowComponent>;
 
 totalCost: number;
 grossCost: number;
@@ -86,6 +89,12 @@ onDeleteCar(car: Car, event: Event) {
   ngAfterViewInit() {
     this.totalCostRef.showGross();
     this.grossCost = 0; // becouse of *ngIf in car-list-component.html
+
+    this.carRows.changes.subscribe(() =>{
+      if(this.carRows.first.car.clientSurname === 'Kowalski') {
+        console.log('warning! client Kowalski is coming, better go holiday');
+      }
+    });
   }
 
   showGross(): void {
