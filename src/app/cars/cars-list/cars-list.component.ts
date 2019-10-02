@@ -75,8 +75,7 @@ goToCarDetails(car: Car) {
   this.router.navigate(['/cars', car.id]);
 }
 
-deleteCar(car: Car, event: Event) {
-  event.stopPropagation();
+onDeleteCar(car: Car, event: Event) {
   this.carsSrvice.deleteCar(car.id).subscribe(() => {
     this.getCars();
   });
