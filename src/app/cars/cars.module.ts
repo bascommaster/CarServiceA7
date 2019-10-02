@@ -8,9 +8,11 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { RouterModule } from '@angular/router';
 import { CarResolve } from './car-resolve.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IncomeTaxComponent } from './total-cost/income-tax/income-tax.component';
+import { CostSharedService } from './cost-shared.service';
 
 @NgModule({
-  declarations: [CarsListComponent, TotalCostComponent, CarDetailsComponent],
+  declarations: [CarsListComponent, TotalCostComponent, CarDetailsComponent, IncomeTaxComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarsListComponent
   ],
   providers: [
-    CarResolve
+    CarResolve,
+    CostSharedService
   ]
 
 })

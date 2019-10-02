@@ -4,6 +4,7 @@ import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CostSharedService } from '../cost-shared.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ cars: Car[];
   constructor(
       private carsSrvice: CarsService,
       private router: Router,
-      private formBuilder: FormBuilder
+      private formBuilder: FormBuilder,
+      private costSharedService: CostSharedService
       ) {
     this.grossCost = 0; // becouse of *ngIf in car-list-component.html
    }
@@ -59,6 +61,7 @@ getCars(): void {
   this.carsSrvice.getAllCars().subscribe(cars => {
     this.cars = cars;
     this.countTotalCost();
+    this.costSharedService.shareCost(this.totalCost);
   });
 }
 
