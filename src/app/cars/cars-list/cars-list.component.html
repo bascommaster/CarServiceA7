@@ -93,6 +93,7 @@
       <div class="col-4">
         <label>Power</label>
         <input formControlName="power" type="text" class="form-control" placeholder="power">
+        <p *ngIf="carForm.get('power').errors && carForm.get('power').dirty" class="error">Power value must be between 50 and 500</p>
       </div>
       <div class="col-4">
         <label>Client first name</label>

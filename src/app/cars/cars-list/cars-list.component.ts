@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CostSharedService } from '../cost-shared.service';
 import { CarTableRowComponent } from '../car-table-row/car-table-row.component';
+import { CsValidator } from 'src/app/shared-module/validators/cs-validators';
 
 
 @Component({
@@ -51,7 +52,7 @@ cars: Car[];
       deliveryDate: '',
       deadline: '',
       color:  '',
-      power: '',
+      power: ['', CsValidator.power],
       clientFirstName: '',
       clientSurname: '',
       cost: '',
