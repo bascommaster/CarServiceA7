@@ -60,6 +60,19 @@ cars: Car[];
     });
   }
 
+togglePlateValidity() {
+  const damageControl = this.carForm.get('isFullyDamaged');
+  const plateControl = this.carForm.get('plate');
+
+  if (damageControl.value) {
+    plateControl.clearValidators();
+  } else {
+    plateControl.setValidators([Validators.required, Validators.minLength(3), Validators.maxLength(7)]);
+  }
+
+  plateControl.updateValueAndValidity();
+}
+
 getCars(): void {
   this.carsSrvice.getAllCars().subscribe(cars => {
     this.cars = cars;
@@ -90,8 +103,8 @@ onDeleteCar(car: Car, event: Event) {
     this.totalCostRef.showGross();
     this.grossCost = 0; // becouse of *ngIf in car-list-component.html
 
-    this.carRows.changes.subscribe(() =>{
-      if(this.carRows.first.car.clientSurname === 'Kowalski') {
+    this.carRows.changes.subscribe(() => {
+      if (this.carRows.first.car.clientSurname === 'Kowalski') {
         console.log('warning! client Kowalski is coming, better go holiday');
       }
     });

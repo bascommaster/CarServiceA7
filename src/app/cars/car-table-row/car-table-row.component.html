@@ -4,4 +4,4 @@
 <td>{{car.deliveryDate}}</td>
 <td>{{car.clientFirstName}} {{car.clientSurname | surnameShortcut}}</td>
 <td appImportant>{{car.cost | currency:'PLN':true}}</td>
-<td><button (click)="deleteCar(car, $event)" class="btn btn-secondary">Delete</button></td>
+<td><button (click)="removeCar(car, $event)" class="btn btn-secondary">Delete</button></td>
