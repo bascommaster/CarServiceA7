@@ -57,7 +57,12 @@ cars: Car[];
       clientSurname: '',
       cost: '',
       isFullyDamaged: '',
-      year: ''
+      year: '',
+      parts: this.formBuilder.group({
+        name: '',
+        inStock: '',
+        price: ''
+      })
     });
   }
 
@@ -83,7 +88,10 @@ getCars(): void {
 }
 
 addCar() {
-  this.carsSrvice.addCar(this.carForm.value).subscribe(() => {
+  const carFormData = Object.assign({}, this.carForm.value); // przypisanie stanu formularza bez referencji
+  carFormData.parts = [carFormData.parts];
+
+  this.carsSrvice.addCar(carFormData).subscribe(() => {
     this.getCars();
   });
 }
