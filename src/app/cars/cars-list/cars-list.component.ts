@@ -3,7 +3,7 @@ import { Car } from '../models/car';
 import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CostSharedService } from '../cost-shared.service';
 import { CarTableRowComponent } from '../car-table-row/car-table-row.component';
 import { CsValidator } from 'src/app/shared-module/validators/cs-validators';
@@ -58,13 +58,30 @@ cars: Car[];
       cost: '',
       isFullyDamaged: '',
       year: '',
-      parts: this.formBuilder.group({
-        name: '',
-        inStock: '',
-        price: ''
-      })
+      parts: this.formBuilder.array([]) // tutaj podstawione zostaną pola przez metodę buildParts()
     });
   }
+
+
+buildParts(): FormGroup {
+  return this.formBuilder.group({
+    name: '',
+    inStock: true,
+    price: ''
+  });
+}
+
+get parts(): FormArray {  // geter
+  return this.carForm.get('parts') as FormArray;
+}
+
+addPart(): void {
+  this.parts.push(this.buildParts()); // parts to geter parts() i dlatego nie ma nawiasów
+}
+
+removePart(i: number): void {
+  this.parts.removeAt(i);
+}
 
 togglePlateValidity() {
   const damageControl = this.carForm.get('isFullyDamaged');
@@ -88,10 +105,7 @@ getCars(): void {
 }
 
 addCar() {
-  const carFormData = Object.assign({}, this.carForm.value); // przypisanie stanu formularza bez referencji
-  carFormData.parts = [carFormData.parts];
-
-  this.carsSrvice.addCar(carFormData).subscribe(() => {
+  this.carsSrvice.addCar(this.carForm.value).subscribe(() => {
     this.getCars();
   });
 }
