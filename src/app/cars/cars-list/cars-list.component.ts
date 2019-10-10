@@ -55,7 +55,6 @@ cars: Car[];
       power: ['', CsValidator.power],
       clientFirstName: '',
       clientSurname: '',
-      cost: '',
       isFullyDamaged: '',
       year: '',
       parts: this.formBuilder.array([]) // tutaj podstawione zostaną pola przez metodę buildParts()
@@ -105,9 +104,18 @@ getCars(): void {
 }
 
 addCar() {
-  this.carsSrvice.addCar(this.carForm.value).subscribe(() => {
+  let carFormData = Object.assign({}, this.carForm.value);
+  carFormData.cost = this.getPartsCost(carFormData.parts);
+
+  this.carsSrvice.addCar(carFormData).subscribe(() => {
     this.getCars();
   });
+}
+
+getPartsCost(parts) {
+  return parts.reduce((prev, nextPart) => {
+    return parseFloat(prev) + parseFloat(nextPart.price);
+  }, 0);
 }
 
 goToCarDetails(car: Car) {
